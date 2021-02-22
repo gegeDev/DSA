@@ -161,5 +161,4 @@ void List::remove(unsigned long a){
         else if(last == i1){last = i2;}
     }
     delete(i1);
-    size();
 }
