@@ -22,7 +22,7 @@ public:
 };
 
 int main(){
-    int n;
+    /*int n;
     vector<int> t;
     Heap h1(t);
     while(true){
@@ -38,8 +38,8 @@ int main(){
             h1.hSort();
         }
         h1.show();
-    }
-    /*vector<int> tab;
+    }*/
+    vector<int> tab;
     clock_t start, stop;
     srand(time(NULL));
     for(int i = 0; i < maxSize; i++){
@@ -57,7 +57,7 @@ int main(){
     start = clock();
     sort(tab.begin(), tab.end());
     stop = clock();
-    cout << (double)(stop - start) / CLOCKS_PER_SEC << endl;*/
+    cout << (double)(stop - start) / CLOCKS_PER_SEC << endl;
     return 0;
 }
 
