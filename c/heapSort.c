@@ -25,7 +25,7 @@ void heapSort(int arr[], int n){
         i = 0;
         swap(&arr[0], &arr[last--]);
         while(2 * i + 1 < last){
-            if(2 * i + 2 < last && arr[2 * i + 2] > arr[2 * i + 1] && arr[2 * i + 2] > arr[i]){
+            if(2 * i + 2 <= last && arr[2 * i + 2] > arr[2 * i + 1] && arr[2 * i + 2] > arr[i]){
                 swap(&arr[i], &arr[i * 2 + 2]);
                 i = 2 * i + 2;
             }else if(arr[2 * i + 1] > arr[i]){
@@ -37,9 +37,9 @@ void heapSort(int arr[], int n){
 }
 
 int main(){
-    int tab [] = {1, 14, 56, 22, 3, 54, 89, 32, 21, 34, 22, 144, 29, 67};
-    heapSort(tab, 14);
-    for(int i = 0; i < 14; i++){
+    int tab [] = {5, 4, 3, 2, 1};
+    heapSort(tab, 5);
+    for(int i = 0; i < 5; i++){
         printf("%d ", tab[i]);
     }
     printf("\n");
