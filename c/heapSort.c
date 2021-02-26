@@ -24,7 +24,7 @@ void heapSort(int arr[], int n){
     for(int x = 0; x < n; x++){
         i = 0;
         swap(&arr[0], &arr[last--]);
-        while(2 * i + 1 < last){
+        while(2 * i + 1 <= last){
             if(2 * i + 2 <= last && arr[2 * i + 2] > arr[2 * i + 1] && arr[2 * i + 2] > arr[i]){
                 swap(&arr[i], &arr[i * 2 + 2]);
                 i = 2 * i + 2;
