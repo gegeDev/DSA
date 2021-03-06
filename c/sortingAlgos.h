@@ -9,11 +9,20 @@ void swap(int *a, int *b){
 void heapSort(int arr[], int n){
     int temp;
     
-    // Create a heap in place
-    for(int i = 1; i < n; i++){
+    // Create a heap in place worse implementation, takes about 2x longer than the second one
+    /* for(int i = 1; i < n; i++){
         temp = i;
         while(arr[temp] > arr[temp/2]){
             swap(&arr[temp], &arr[temp/2]);
+            temp = temp / 2;
+        }
+    }*/
+    
+    // Create a heap in place
+    for(int i = n / 2; i < n; i++){
+        temp = i;
+        while(arr[temp] >= arr[temp / 2] && temp != 0){
+            if(arr[temp] != arr[temp/2]) swap(&arr[temp], &arr[temp/2]);
             temp = temp / 2;
         }
     }
@@ -75,22 +84,22 @@ void insertionSort(int *arr, int n){
 }
 
 void mergeSort(int* arr, int b, int e){
-	if(b == e) return;
-	
-	mergeSort(arr, b, (b+e)/2);
-	mergeSort(arr, (b+e)/2 + 1, e);
-	
-	
-	int i = b, j = (b+e) / 2 + 1, m = (b+e)/2, x = 0;
-	int *temp = malloc(sizeof(int) * (e - b + 1));
-	
-	while(i <= m && j <= e){
-		if(arr[i] <= arr[j]) temp[x++] = arr[i++];
-		else temp[x++] = arr[j++];
-	}
-	while(i <= m) temp[x++] = arr[i++];
-	while(j <= e) temp[x++] = arr[j++];
-	
-	for(int i = 0; i < e - b + 1; i++) arr[b + i] = temp[i];
-	free(temp);
+    if(b == e) return;
+    
+    mergeSort(arr, b, (b+e)/2);
+    mergeSort(arr, (b+e)/2 + 1, e);
+    
+    
+    int i = b, j = (b+e) / 2 + 1, m = (b+e)/2, x = 0;
+    int *temp = malloc(sizeof(int) * (e - b + 1));
+    
+    while(i <= m && j <= e){
+        if(arr[i] <= arr[j]) temp[x++] = arr[i++];
+        else temp[x++] = arr[j++];
+    }
+    while(i <= m) temp[x++] = arr[i++];
+    while(j <= e) temp[x++] = arr[j++];
+    
+    for(int i = 0; i < e - b + 1; i++) arr[b + i] = temp[i];
+    free(temp);
 }
