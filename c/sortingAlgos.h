@@ -79,17 +79,24 @@ void insertionSort(int *arr, int n){
     for(int i = 0; i < n; i++){
         for(int j = i; j > 0; j--){
             if(arr[j] < arr[j - 1]) swap(&arr[j], &arr[j - 1]);
+            else break;
         }
     }
 }
 
 void mergeSort(int* arr, int b, int e){
     if(b == e) return;
+<<<<<<< HEAD
+    mergeSort(arr, b, (b+e)/2);
+    mergeSort(arr, (b+e)/2 + 1, e);
+    
+=======
     
     mergeSort(arr, b, (b+e)/2);
     mergeSort(arr, (b+e)/2 + 1, e);
     
     
+>>>>>>> refs/remotes/origin/master
     int i = b, j = (b+e) / 2 + 1, m = (b+e)/2, x = 0;
     int *temp = malloc(sizeof(int) * (e - b + 1));
     
@@ -102,4 +109,19 @@ void mergeSort(int* arr, int b, int e){
     
     for(int i = 0; i < e - b + 1; i++) arr[b + i] = temp[i];
     free(temp);
+<<<<<<< HEAD
 }
+
+void shellSort(int *arr, int n){
+    for(int i = n/3; i >= 1; i = (i+1) / 3){
+        for(int j = i; j < n; j++){
+            for(int k = j; k >= i; k-= i){
+                if(arr[k] < arr[k - i]) swap(&arr[k], &arr[k-i]);
+                else break;
+            }
+        }
+    }
+}
+=======
+}
+>>>>>>> refs/remotes/origin/master
