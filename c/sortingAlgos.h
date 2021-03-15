@@ -45,6 +45,7 @@ void heapSort(int arr[], int n){
     }
 }
 
+// middle pivot
 void quickSort(int* arr, int b, int e){
     int i = b, j = e, m = arr[(b + e) / 2]; 
     while(i <= j){
@@ -54,6 +55,32 @@ void quickSort(int* arr, int b, int e){
     }
     if(i < e){quickSort(arr, i, e);}
     if(b < j){quickSort(arr, b, j);}
+}
+
+// beginning pivot
+void quickSortB(int* arr, int b, int e){
+    int i = b, j = e, piv = arr[b];
+    while(i <= j){
+        while(arr[j] > piv) j--;
+        if(i <= j) swap(&arr[j], &arr[i++]);
+        while(arr[i] < piv) i++;
+        if(i <= j) swap(&arr[i], &arr[j--]);
+    }
+    if(i < e) quickSortB(arr, i, e);
+    if(b < j) quickSortB(arr, b, j);
+}
+
+// end pivot
+void quickSortE(int* arr, int b, int e){
+    int i = b, j = e, piv = arr[e];
+    while(i <= j){
+        while(arr[i] < piv) i++;
+        if(i <= j) swap(&arr[i], &arr[j--]);
+        while(arr[j] > piv) j--;
+        if(i <= j) swap(&arr[j], &arr[i++]);
+    }
+    if(i < e) quickSortE(arr, i, e);
+    if(b < j) quickSortE(arr, b, j);
 }
 
 void bubbleSort(int* arr, int n){
@@ -86,9 +113,6 @@ void insertionSort(int *arr, int n){
 
 void mergeSort(int* arr, int b, int e){
     if(b == e) return;
-    mergeSort(arr, b, (b+e)/2);
-    mergeSort(arr, (b+e)/2 + 1, e);
-    
     mergeSort(arr, b, (b+e)/2);
     mergeSort(arr, (b+e)/2 + 1, e);
 

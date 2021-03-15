@@ -15,20 +15,20 @@ int main(){
     }
     
     clock_t start, stop;
-    start = clock();
+    /*start = clock();
     heapSort(a, n);
     stop = clock();
-    printf("Heap sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
+    printf("Heap sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);*/
     
     start = clock();
-    heapSort(a, n);
+    quickSortE(a, 0, n);
     stop = clock();
     printf("Quick sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
-	
-	start = clock();
-    mergeSort(a, 0, n-1);
+    
+    /*start = clock();
+    mergeSort(a, 0, n - 1);
     stop = clock();
-    printf("Merge sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
+    printf("Merge sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);*/
     
     return 0;
 }
