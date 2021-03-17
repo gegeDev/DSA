@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <time.h>
 void swap(int *a, int *b){
     int temp = *a;
     *a = *b;
@@ -18,7 +18,7 @@ void heapSort(int arr[], int n){
         }
     }*/
     
-    // Create a heap in place
+    // Create a heap
     for(int i = n / 2; i < n; i++){
         temp = i;
         while(arr[temp] >= arr[temp / 2] && temp != 0){
@@ -58,29 +58,27 @@ void quickSort(int* arr, int b, int e){
 }
 
 // beginning pivot
-void quickSortB(int* arr, int b, int e){
-    int i = b, j = e, piv = arr[b];
+void quickSortE(int* arr, int b, int e){
+    int i = b, j = e, m = arr[e]; 
     while(i <= j){
-        while(arr[j] > piv) j--;
-        if(i <= j) swap(&arr[j], &arr[i++]);
-        while(arr[i] < piv) i++;
-        if(i <= j) swap(&arr[i], &arr[j--]);
+        while(arr[i] < m){i++;}
+        while(arr[j] > m){j--;}
+        if(i <= j){swap(&arr[i++], &arr[j--]);}
     }
-    if(i < e) quickSortB(arr, i, e);
-    if(b < j) quickSortB(arr, b, j);
+    if(i < e){quickSortE(arr, i, e);}
+    if(b < j){quickSortE(arr, b, j);}
 }
 
-// end pivot
-void quickSortE(int* arr, int b, int e){
-    int i = b, j = e, piv = arr[e];
+void quickSortR(int* arr, int b, int e){
+    srand(time(NULL));
+    int i = b, j = e, m = arr[rand() % (e - b) +  b]; 
     while(i <= j){
-        while(arr[i] < piv) i++;
-        if(i <= j) swap(&arr[i], &arr[j--]);
-        while(arr[j] > piv) j--;
-        if(i <= j) swap(&arr[j], &arr[i++]);
+        while(arr[i] < m){i++;}
+        while(arr[j] > m){j--;}
+        if(i <= j){swap(&arr[i++], &arr[j--]);}
     }
-    if(i < e) quickSortE(arr, i, e);
-    if(b < j) quickSortE(arr, b, j);
+    if(i < e){quickSortR(arr, i, e);}
+    if(b < j){quickSortR(arr, b, j);}
 }
 
 void bubbleSort(int* arr, int n){

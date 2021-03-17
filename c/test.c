@@ -21,9 +21,9 @@ int main(){
     printf("Heap sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);*/
     
     start = clock();
-    quickSortE(a, 0, n);
+    quickSortR(a, 0, n);
     stop = clock();
-    printf("Quick sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
+    printf("Quick sort time: %.9f\n", (double)(stop - start) / CLOCKS_PER_SEC);
     
     /*start = clock();
     mergeSort(a, 0, n - 1);
