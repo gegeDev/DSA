@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
+typedef struct stack item;
 void swap(int *a, int *b){
     int temp = *a;
     *a = *b;
@@ -35,7 +36,7 @@ void heapSort(int arr[], int n){
 
 // middle pivot
 void quickSort(int* arr, int b, int e){
-    int i = b, j = e, m = arr[(b + e) / 2]; 
+    int i = b, j = e - 1, m = arr[(b + e) / 2];
     while(i <= j){
         while(arr[i] < m){i++;}
         while(arr[j] > m){j--;}
@@ -47,7 +48,7 @@ void quickSort(int* arr, int b, int e){
 
 // beginning pivot
 void quickSortE(int* arr, int b, int e){
-    int i = b, j = e, m = arr[e]; 
+    int i = b, j = e - 1, m = arr[e-1];
     while(i <= j){
         while(arr[i] < m){i++;}
         while(arr[j] > m){j--;}
@@ -59,7 +60,7 @@ void quickSortE(int* arr, int b, int e){
 
 void quickSortR(int* arr, int b, int e){
     srand(time(NULL));
-    int i = b, j = e, m = arr[rand() % (e - b) +  b]; 
+    int i = b, j = e-1, m = arr[rand() % (e - b) +  b];
     while(i <= j){
         while(arr[i] < m){i++;}
         while(arr[j] > m){j--;}
@@ -116,13 +117,36 @@ void mergeSort(int* arr, int b, int e){
     free(temp);
 }
 
+struct stack{
+    int val;
+    item *next;
+};
+item *last = NULL;
+void push(int n){
+    item *temp = malloc(sizeof(item));
+    temp -> val = n;
+    temp -> next = last;
+    last = temp;
+}
+int pop(){
+    if(!last) return 0;
+    item *temp = last;
+    last = temp -> next;
+    int e = temp -> val;
+    free(temp);
+    return e;
+}
+
 void shellSort(int *arr, int n){
-    for(int i = n/3; i >= 1; i = (i+1) / 3){
-        for(int j = i; j < n; j++){
-            for(int k = j; k >= i; k-= i){
-                if(arr[k] < arr[k - i]) swap(&arr[k], &arr[k-i]);
+    for(int i = 1; i < n/3; i = 3*i + 1) push(i);
+    int p;
+    do{
+        p = pop();
+        for(int j = p; j < n; j++){
+            for(int k = j; k >= p; k-= p){
+                if(arr[k] < arr[k - p]) swap(&arr[k], &arr[k-p]);
                 else break;
             }
         }
-    }
+    }while(p > 1);
 }

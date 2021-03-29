@@ -16,9 +16,9 @@ int main(){
     
     clock_t start, stop;
     start = clock();
-    heapSort(a, n);
+    shellSort(a, n);
     stop = clock();
-    printf("Heap sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
+    printf("Shell Sort time: %g\n", (double)(stop - start) / CLOCKS_PER_SEC);
     
     /*start = clock();
     quickSortR(a, 0, n);
